@@ -6,6 +6,9 @@ public class DailyHoroscopes {
 		System.out.println("Please enter your birthday (MM/DD/YYYY): ");
 		String input = TextIO.getln();
 		convertToInt(input, toParse, block);
+		int m = monthInt(toParse, block);
+		int d = dayInt(toParse, block);
+		sign(m, d);
 	
 	}
 	
@@ -67,6 +70,97 @@ public class DailyHoroscopes {
 		}
 		return day;
 	} //end dayInt
+	public static String sign(int m, int d) {
+		switch(m) {
+		case 1:
+			if (d < 20) {
+				return "Capricorn";
+			}
+			if (d > 19 && d < 32) {
+				return "Aquarius";
+			}
+		case 2: 
+			if (d < 19) {
+				return "Aquarius";
+			}
+			if (d > 18 && d < 30) {
+				return "Pisces";
+			}
+		case 3:
+			if (d < 21) {
+				return "Pisces";
+			}
+			if (d > 20 && d < 32) {
+				return "Aries";
+			}
+		case 4: 
+			if (d < 20) {
+				return "Aries";
+			}
+			if (d > 19 && d < 31) {
+				return "Taurus";
+			}
+		case 5: 
+			if (d < 21) {
+				return "Taurus";
+			}
+			if (d > 20 && d < 32) {
+				return "Gemini";
+			}
+		case 6: 
+			if (d < 21) {
+				return "Gemini";
+			}
+			if (d > 20 && d < 31) {
+				return "Cancer";
+			}
+		case 7: 
+			if (d < 23) {
+				return "Cancer";
+			}
+			if (d > 22 && d < 32) {
+				return "Leo";
+			}
+		case 8: 
+			if (d < 23) {
+				return "Leo";
+			}
+			if (d > 22 && d < 32) {
+				return "Virgo";
+			}
+		case 9: 
+			if (d < 23) {
+				return "Virgo";
+			}
+			if (d > 22 && d < 31) {
+				return "Libra";
+			}
+		case 10: 
+			if (d < 23) {
+				return "Libra";
+			}
+			if (d > 22 && d < 32) {
+				return "Scorpio";
+			}
+		case 11: 
+			if (d < 22) {
+				return "Scorpio";
+			}
+			if (d > 21 && d < 31) {
+				return "Sagittarius";
+			}
+		case 12: 
+			if (d < 22) {
+				return "Sagittarius";
+			}
+			if (d > 21 && d < 32) {
+				return "Capricorn";
+			}
+		default: 
+			return "ERROR";
+		}
+		
+	}
 
 	
 
