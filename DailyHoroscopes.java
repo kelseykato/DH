@@ -1,3 +1,6 @@
+import java.net.*;
+import java.io.*;
+
 public class DailyHoroscopes {
 
 	public static void main(String[] args) {
@@ -8,7 +11,8 @@ public class DailyHoroscopes {
 		convertToInt(input, toParse, block);
 		int m = monthInt(toParse, block);
 		int d = dayInt(toParse, block);
-		sign(m, d);
+		String userSign = sign(m, d);
+		astrologyWeb(userSign);
 	
 	}
 	
@@ -36,8 +40,7 @@ public class DailyHoroscopes {
 						break;
 					}
 				}
-				dayInt(toParse, block);
-				
+				dayInt(toParse, block);	
 			}
 
 		}
@@ -47,29 +50,30 @@ public class DailyHoroscopes {
 	} //end convertToInt
 	
 	public static int monthInt(String toParse, int block) {
-		int month = 0;
+		int m = 0;
 		if (block == 0) {
 			try {
-				month = Integer.parseInt(toParse);
+				m = Integer.parseInt(toParse);
 			}
 			catch (NumberFormatException e) {
 			
 			}
 		}
-		return month;
+		return m;
 	} //end monthInt
 	
 	public static int dayInt(String toParse, int block) {
-		int day = 0;
+		int d = 0;
 		if (block == 1) {
 			try {
-				day = Integer.parseInt(toParse);
+				d = Integer.parseInt(toParse);
 			}
 			catch (NumberFormatException e) {
 			}
 		}
-		return day;
+		return d;
 	} //end dayInt
+	
 	public static String sign(int m, int d) {
 		switch(m) {
 		case 1:
@@ -160,8 +164,28 @@ public class DailyHoroscopes {
 			return "ERROR";
 		}
 		
-	}
+	} //end sign
 
+	public static void astrologyWeb(String userSign) {
+		try {
+			if (userSign == "Leo") {
+				URL astrology = new URL("http://www.astrology.com/");
+				BufferedReader in = new BufferedReader(new InputStreamReader(astrology.openStream()));
+				
+				String horoscope;
+				while ((horoscope = in.readLine()) != null) {
+					System.out.println(horoscope);
+					in.close();
+				}
+
+			}
+			
+		}
+		catch(IOException e) {
+			
+		}
+		
+	}
 	
 
 } //end class
