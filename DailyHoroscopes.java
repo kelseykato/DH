@@ -4,74 +4,37 @@ import java.io.*;
 public class DailyHoroscopes {
 
 	public static void main(String[] args) {
-		String toParse = "";
-		int block = 0;
 		System.out.println("Please enter your birthday (MM/DD/YYYY): ");
 		String input = TextIO.getln();
-		convertToInt(input, toParse, block);
-		int m = monthInt(toParse, block);
-		int d = dayInt(toParse, block);
+		int m = monthInt(input);
+		int d = dayInt(input);
 		String userSign = sign(m, d);
 		astrologyWeb(userSign);
 	
 	}
 	
-	public static void convertToInt(String input, String toParse, int block) {
-		try {
-			if (block == 0) {
-				for (int i = 0; i < input.length(); i++) {
-					if (input.charAt(i) != '/') {
-						toParse += input.charAt(i);
-					}
-					else {
-						break;
-					}
-				}
-				monthInt(toParse, block);
-				block++;
-			}
-			if (block == 1) {
-				toParse = "";
-				for (int i = 3; i < input.length(); i++) {
-					if (input.charAt(i) != '/') {
-						toParse += input.charAt(i);
-					}
-					else {
-						break;
-					}
-				}
-				dayInt(toParse, block);	
-			}
-
-		}
-		catch (IllegalArgumentException e) {	
-		}	
-		
-	} //end convertToInt
-	
-	public static int monthInt(String toParse, int block) {
-		int m = 0;
-		if (block == 0) {
+	public static int monthInt(String input) {
+		int month = 0;
+		String toParseM = "";
 			try {
-				m = Integer.parseInt(toParse);
+				toParseM = input.substring(0, 2);
+				month = Integer.parseInt(toParseM);
 			}
 			catch (NumberFormatException e) {
-			
 			}
-		}
-		return m;
+		return month;
 	} //end monthInt
 	
-	public static int dayInt(String toParse, int block) {
-		int d = 0;
-		if (block == 1) {
+	public static int dayInt(String input) {
+		int day = 0;
+		String toParseD = "";
 			try {
-				d = Integer.parseInt(toParse);
+				toParseD = input.substring(3, 5);
+				day = Integer.parseInt(toParseD);
 			}
 			catch (NumberFormatException e) {
 			}
-		}
-		return d;
+		return day;
 	} //end dayInt
 	
 	public static String sign(int m, int d) {
@@ -169,7 +132,7 @@ public class DailyHoroscopes {
 	public static void astrologyWeb(String userSign) {
 		try {
 			if (userSign == "Leo") {
-				URL astrology = new URL("http://www.astrology.com/");
+				URL astrology = new URL("http://www.astrology.com/horoscope/daily/leo.html");
 				BufferedReader in = new BufferedReader(new InputStreamReader(astrology.openStream()));
 				
 				String horoscope;
